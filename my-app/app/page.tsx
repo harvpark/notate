@@ -1,7 +1,21 @@
+"use client";
+import { useState } from "react";
 import { Pencil, MessageSquare } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation";
 
 export default function WebAnnotator() {
+  const router = useRouter();
+  const [url, setUrl] = useState<string>("");
+
+  const handleSubmit = () => {
+    if (url) {
+      // Create a session ID (you might want to generate this properly)
+      const sessionId = encodeURIComponent(url);
+      router.push(`/editor/${sessionId}`);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4">
       <h1 className="text-4xl md:text-5xl lg:text-6xl text-center mb-16 font-serif">annotate anything on the web</h1>
@@ -36,8 +50,12 @@ export default function WebAnnotator() {
             type="url"
             placeholder="enter a link"
             className="w-full h-12 px-4 text-lg bg-gray-100/80 border-none rounded-full"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
           />
           <button
+            onClick={handleSubmit}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors"
             aria-label="Submit"
           >
