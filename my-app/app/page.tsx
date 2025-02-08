@@ -1,6 +1,9 @@
 import { Pencil, MessageSquare } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
+
+//this is the home page where you enter a URL
+
 export default function WebAnnotator() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4">
@@ -34,7 +37,7 @@ export default function WebAnnotator() {
         <div className="relative">
           <Input
             type="url"
-            placeholder="enter a link"
+            placeholder="enter a link to annotate!"
             className="w-full h-12 px-4 text-lg bg-gray-100/80 border-none rounded-full"
           />
           <button
