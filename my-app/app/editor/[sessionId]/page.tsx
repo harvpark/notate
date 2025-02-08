@@ -3,12 +3,13 @@
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 
+import Toolbar from "@/components/editor/Toolbar"
+
 export default function EditorPage() {
   const params = useParams();
   const rawUrl = decodeURIComponent(params.sessionId as string);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
   // Ensure URL has protocol and use proxy
   const getProxiedUrl = (url: string) => {
     try {
@@ -32,6 +33,7 @@ export default function EditorPage() {
 
   return (
     <div className="flex flex-col h-full">
+      <Toolbar />
       <header className="h-14 border-b px-4 flex items-center justify-between bg-white">
         <div className="flex items-center gap-4">
           <h1 className="font-semibold">Web Annotator</h1>

@@ -52,7 +52,7 @@ export default function WebAnnotator() {
           <Input
             type="url"
             placeholder="enter a link to annotate!"
-            className="w-full h-12 px-4 text-lg bg-gray-100/80 border-none rounded-full"
+            className="w-full h-12 px-4 text-lg bg-[#F3F3F3] border-[#CACACA] rounded-xl"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
