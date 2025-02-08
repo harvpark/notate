@@ -4,6 +4,9 @@ import { Pencil, MessageSquare } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation";
 
+
+//this is the home page where you enter a URL
+
 export default function WebAnnotator() {
   const router = useRouter();
   const [url, setUrl] = useState<string>("");
@@ -48,7 +51,7 @@ export default function WebAnnotator() {
         <div className="relative">
           <Input
             type="url"
-            placeholder="enter a link"
+            placeholder="enter a link to annotate!"
             className="w-full h-12 px-4 text-lg bg-gray-100/80 border-none rounded-full"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
