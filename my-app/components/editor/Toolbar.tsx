@@ -54,7 +54,7 @@ export default function Toolbar() {
                     {isActive && (
                       <motion.div
                         layoutId="active-indicator"
-                        className="absolute -bottom-1 inset-x-0 mx-auto w-1 h-1 bg-primary rounded-full"
+                        className="absolute -bottom-1 inset-x-0 mx-auto w-2 h-1 bg-primary rounded-full"
                         transition={{
                           type: "spring",
                           stiffness: 300,

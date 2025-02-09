@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
+import Link from "next/link";
 
 import Toolbar from "@/components/editor/Toolbar"
 
@@ -36,8 +37,12 @@ export default function EditorPage() {
       <Toolbar />
       <header className="h-14 border-b px-4 flex items-center justify-between bg-white">
         <div className="flex items-center gap-4">
-          <h1 className="font-semibold">Web Annotator</h1>
-          <span className="text-sm text-gray-500 truncate max-w-md">{rawUrl}</span>
+          <Link href="/" className="">
+            <h1 className="font-semibold">Notate.</h1>
+          </Link>
+          <Link href={rawUrl}>
+            <span className="text-sm text-gray-500 truncate max-w-md">{rawUrl}</span>
+          </Link>
         </div>
       </header>
 

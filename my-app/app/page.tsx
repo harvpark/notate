@@ -21,7 +21,7 @@ export default function WebAnnotator() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4">
-      <h1 className="text-4xl md:text-5xl lg:text-6xl text-center mb-16 font-serif">annotate anything on the web</h1>
+      <h1 className="text-4xl md:text-5xl lg:text-7xl text-center mb-16">Annotate anything on the web:</h1>
 
       <div className="w-full max-w-2xl">
         {/* Decorative elements */}
@@ -59,7 +59,7 @@ export default function WebAnnotator() {
           />
           <button
             onClick={handleSubmit}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-400 transition-colors"
             aria-label="Submit"
           >
             <span className="rotate-90">↵</span>
