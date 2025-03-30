@@ -24,28 +24,6 @@ export default function WebAnnotator() {
       <h1 className="text-4xl md:text-5xl lg:text-7xl text-center mb-16">Annotate anything on the web:</h1>
 
       <div className="w-full max-w-2xl">
-        {/* Decorative elements */}
-        <div className="relative h-20 mb-6">
-          {/* Pencil icon */}
-          <div className="absolute left-[20%] top-1/2 transform -translate-y-1/2">
-            <Pencil className="w-8 h-8 text-gray-800" />
-          </div>
-
-          {/* Green note */}
-          <div className="absolute left-[45%] top-1/2 transform -translate-y-1/2">
-            <div className="w-16 h-16 bg-green-100 rounded-sm transform rotate-3 shadow-sm">
-              <div className="absolute -right-1 -top-1 w-4 h-4 bg-green-100 transform rotate-45" />
-            </div>
-          </div>
-
-          {/* Chat bubbles */}
-          <div className="absolute right-[20%] top-1/2 transform -translate-y-1/2">
-            <div className="relative">
-              <MessageSquare className="w-12 h-12 absolute -top-2 -right-2 text-yellow-200 fill-yellow-200" />
-              <MessageSquare className="w-12 h-12 text-purple-200 fill-purple-200" />
-            </div>
-          </div>
-        </div>
 
         {/* Search input */}
         <div className="relative">
