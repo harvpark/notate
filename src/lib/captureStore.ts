@@ -1,19 +1,38 @@
-// NOTE: This is a TEMPORARY in-memory store for demonstration purposes only.
-// In a real application, this data should be persisted in a database and/or blob storage.
-const captureCache = new Map<string, string>();
+import { connectToDatabase } from '@/lib/mongodb';
 
-export function storeCapture(id: string, html: string) {
-  console.log(`[CaptureStore] Storing capture for ID: ${id} (Size: ${Math.round(html.length / 1024)} KB)`);
-  captureCache.set(id, html);
-  // Optional: Add logic to limit cache size or TTL if needed for memory management
+const collectionName = 'captures';
+
+interface Capture {
+  _id: string; // explicitly set to string
+  html: string;
+  createdAt: Date;
 }
 
-export function getCapture(id: string): string | undefined {
-  console.log(`[CaptureStore] Retrieving capture for ID: ${id}`);
-  return captureCache.get(id);
+export async function storeCapture(id: string, html: string) {
+  const { db } = await connectToDatabase();
+  const collection = db.collection<Capture>(collectionName);
+
+  await collection.insertOne({
+    _id: id,
+    html,
+    createdAt: new Date(),
+  });
+
+  console.log(`[MongoDB] Stored capture with ID: ${id}`);
 }
 
-export function deleteCapture(id: string): boolean {
-  console.log(`[CaptureStore] Deleting capture for ID: ${id}`);
-  return captureCache.delete(id);
-} 
+export async function getCapture(id: string): Promise<string | null> {
+  const { db } = await connectToDatabase();
+  const collection = db.collection<Capture>(collectionName);
+
+  const capture = await collection.findOne({ _id: id });
+  return capture ? capture.html : null;
+}
+
+export async function deleteCapture(id: string): Promise<boolean> {
+  const { db } = await connectToDatabase();
+  const collection = db.collection<Capture>(collectionName);
+
+  const result = await collection.deleteOne({ _id: id });
+  return result.deletedCount === 1;
+}

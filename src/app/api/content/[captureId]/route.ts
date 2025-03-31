@@ -12,7 +12,7 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { captureId: string } }
 ) {
-  const captureId = params.captureId;
+  const {captureId} = await params;
 
   if (!captureId) {
     // Use NextResponse for consistency with the other API route
@@ -22,7 +22,7 @@ export async function GET(
   try {
     // Retrieve content directly from the store
     console.log(`[API /content] Attempting to retrieve content for captureId: ${captureId}`);
-    const htmlContent = getCapture(captureId); // This is synchronous now
+    const htmlContent = await getCapture(captureId); // This is synchronous now
 
     if (!htmlContent) {
       console.warn(`[API /content] Content not found for captureId: ${captureId}`);
