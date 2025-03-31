@@ -5,16 +5,18 @@ const collectionName = 'captures';
 interface Capture {
   _id: string; // explicitly set to string
   html: string;
+  originalUrl: string;
   createdAt: Date;
 }
 
-export async function storeCapture(id: string, html: string) {
+export async function storeCapture(id: string, data: { html: string; originalUrl: string }) {
   const { db } = await connectToDatabase();
   const collection = db.collection<Capture>(collectionName);
 
   await collection.insertOne({
     _id: id,
-    html,
+    html: data.html,
+    originalUrl: data.originalUrl,
     createdAt: new Date(),
   });
 
@@ -27,6 +29,13 @@ export async function getCapture(id: string): Promise<string | null> {
 
   const capture = await collection.findOne({ _id: id });
   return capture ? capture.html : null;
+}
+
+export async function getFullCapture(id: string): Promise<Capture | null> {
+  const { db } = await connectToDatabase();
+  const collection = db.collection<Capture>(collectionName);
+
+  return await collection.findOne({ _id: id });
 }
 
 export async function deleteCapture(id: string): Promise<boolean> {
