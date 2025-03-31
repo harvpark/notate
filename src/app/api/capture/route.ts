@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
     const captureId = `cap_${Date.now()}`;
 
     // Store the captured HTML in our temporary store
-    storeCapture(captureId, htmlContent);
+    await storeCapture(captureId, htmlContent);
 
     console.log(`[API /capture] Generated and stored captureId: ${captureId} for URL: ${validatedUrl.toString()}`);
 
